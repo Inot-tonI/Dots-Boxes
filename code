@@ -11,11 +11,11 @@ win= pygame.display.set_mode(SCREEN)
 
 #colors
 WHITE=(255,255,255)
-BLACK=(12,12,12)
-RED=(252, 91, 122)
-BLUE=(78, 193, 246)
-GREEN=(0,255,0)
-font= pygame.font.SysFont("cursive", 30)
+PURPLE=(68, 20, 108)
+PINK=(243, 108, 172)
+BLUE=(68, 208, 230)
+GREEN=(92, 210, 134)
+font= pygame.font.SysFont("script", 30)
 #Cell class
 class Cell:
   def __init__(self, r, c):
@@ -48,8 +48,8 @@ class Cell:
         if winner == "X":
           self.color= BLUE
         else:
-          self.color= RED
-        self.text = font.render(self.winner,True, BLACK)
+          self.color= PINK
+        self.text = font.render(self.winner,True, PURPLE)
         return 1
     return 0
         
@@ -58,7 +58,7 @@ class Cell:
       pygame.draw.rect(win, self.color, self.rect)
     for index, side in enumerate(self.sides):
       if side:
-        pygame.draw.line(win, BLACK, (self.edges[index][0]), self.edges[index][1], 2)
+        pygame.draw.line(win, PURPLE, (self.edges[index][0]), self.edges[index][1], 2)
 
 def create_cells():
   cells= []
@@ -143,7 +143,7 @@ while running:
   
   for r in range(ROWS +1):
     for c in range(COLS +1):
-      pygame.draw.circle(win, BLACK, (c*CELLSIZE + 2*PADDING, r*CELLSIZE +3*PADDING), 2)
+      pygame.draw.circle(win, PURPLE, (c*CELLSIZE + 2*PADDING, r*CELLSIZE +3*PADDING), 2)
 
   for cell in cells:
     cell.update(win)
@@ -153,7 +153,7 @@ while running:
   if Ccell:
     index=Ccell.index
     if not Ccell.winner:
-      pygame.draw.circle(win,RED,(Ccell.rect.centerx, Ccell.rect.centery),2)
+      pygame.draw.circle(win,PINK,(Ccell.rect.centerx, Ccell.rect.centery),2)
     if up and not Ccell.sides[0]:
       Ccell.sides[0]= True
       if index-ROWS >=0:
@@ -194,7 +194,7 @@ while running:
   p1rect= p1img.get_rect()
   p1rect.x, p1rect.y = 2*PADDING, 15
 
-  p2img= font.render(f"Player 2: {p2_score}", True, RED)
+  p2img= font.render(f"Player 2: {p2_score}", True, PINK)
   p2rect= p2img.get_rect()
   p2rect.right, p2rect.y = WIDTH-2*PADDING, 15
 
@@ -203,12 +203,12 @@ while running:
   if player == 'X':
     pygame.draw.line(win, BLUE, (p1rect.x, p1rect.bottom+2), (p1rect.right, p1rect.bottom+2), 1)
   else:
-    pygame.draw.line(win, RED, (p2rect.x, p2rect.bottom+2), (p2rect.right, p2rect.bottom+2), 1)
+    pygame.draw.line(win, PINK, (p2rect.x, p2rect.bottom+2), (p2rect.right, p2rect.bottom+2), 1)
 
 #gameover function
   if game_over:
     rect = pygame.Rect((50, 100, WIDTH-100, HEIGHT-200))
-    pygame.draw.rect(win, BLACK, rect)
+    pygame.draw.rect(win, PURPLE, rect)
     pygame.draw.rect(win, GREEN, rect, 2)
 
     over = font.render('Game Over', True, WHITE)
@@ -219,9 +219,10 @@ while running:
     win.blit(winner_img, (rect.centerx-winner_img.get_width()/2, rect.centery- 10))
 
     msg = 'Press r:restart, q:quit'
-    msgimg = font.render(msg, True, RED)
+    msgimg = font.render(msg, True, PINK)
     win.blit(msgimg, (rect.centerx-msgimg.get_width()/2, 
   rect.centery + 20))
   
   pygame.display.update()
 pygame.quit()
+
