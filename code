@@ -10,7 +10,7 @@ pygame.init()
 win= pygame.display.set_mode(SCREEN)
 
 #colors
-WHITE=(255,255,255)
+WHITE=(218, 229, 255))
 PURPLE=(68, 20, 108)
 PINK=(243, 108, 172)
 BLUE=(68, 208, 230)
